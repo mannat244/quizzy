@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/f093df13d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
+    <script>
+        const TIME_LIMIT = 300;
+        let timePassed = 0;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval = null;
+
+        function formatTimeLeft(time) {
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            if (seconds < 10) {
+                seconds = `0${seconds}`;
+            }
+            return `${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timePassed += 1;
+                timeLeft = TIME_LIMIT - timePassed;
+                document.getElementById("timer").textContent = formatTimeLeft(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    // Additional actions to be performed when the timer reaches zero can be added here
+                    document.getElementById("submitButton").click();
+                }
+            }, 1000);
+        }
+
+        // Start the timer when the page loads
+        window.onload = startTimer;
+    </script>
+
+
+
+</head>
+
+<body>
+    <style>
+        * {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            color: whitesmoke;
+            font-style: normal;
+        }
+
+
+        body {
+            background-color: rgb(18, 18, 18);
+        }
+
+        header .title {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .title h1 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: whitesmoke;
+        }
+
+        .main .timer {
+            background-color: rgb(26, 26, 26);
+            min-height: 20px;
+            max-width: 100%;
+            padding: auto;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            text-align: center;
+            border-radius: 12px 12px 12px 12px;
+            margin: auto;
+        }
+
+        .timer p {
+            padding-top: 1%;
+            padding-bottom: 1%;
+        }
+
+        .main .quiz {
+            background-color: rgb(26, 26, 26);
+            min-height: 80%;
+            max-width: 100%;
+            padding-left: 3%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            padding-right: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            text-align: left;
+            border-radius: 12px 12px 12px 12px;
+
+        }
+
+        .space {
+            height: 0.1vh;
+        }
+        
+
+        .main {
+            min-height: 70vh;
+            max-width: 90vw;
+            padding: auto;
+            margin-top: 3%;
+            text-align: center;
+            border-radius: 12px 12px 12px 12px;
+            margin: auto;
+        }
+
+        .start h2 {
+            padding-top: 3%;
+
+        }
+
+        .start p {
+            padding: 0 3%;
+        }
+
+        .icon_tray {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .button {
+                margin-top: 1%;
+                padding-bottom: 1%;
+                margin-bottom: 1%;
+                padding-left: 1%;
+                padding-right: 1%;
+                background-color: rgb(68, 68, 68);
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                will-change: transform;
+                padding-top: 1%;
+                min-height: 40px;
+                min-width: 80px;
+                box-sizing: border-box;
+                transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                outline: none;
+                appearance: none;
+                border-radius: 15px;
+                cursor: pointer;
+
+            }
+
+            .button:hover {
+                box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                transform: translateY(-2px);
+            }
+    </style>
+
+    <header>
+        <div class="title">
+            <h1>Quizzy</h1>
+        </div>
+    </header>
+
+
+
+
+    <div class="main">
+
+        <div class="timer">
+
+            <p><i class="fa-solid fa-hourglass-half"></i> Time Left:
+                <span id="timer">${formatTimeLeft(timeLeft)}</span>
+            </p>
+        </div>
+
+        <div class="quiz">
+
+            <form id="quizForm" action="results.html" method="GET">
+                <h3>1. Which option is used to define an image in HTML?</h3>
+                <input type="radio" id="option_1" name="question_1" value="img">
+                <label for="question_1">img</label>
+                <br>
+                <input type="radio" id="option_2" name="question_1" value="image">
+                <label for="question_1">image</label>
+                <br>
+                <input type="radio" id="option_3" name="question_1" value="picture">
+                <label for="question_1">picture</label>
+                <br>
+                <input type="radio" id="option_4" name="question_1" value="imgsrc">
+                <label for="question_1">imgsrc</label>
+                <br>
+
+        </div>
+
+        <div class="quiz">
+            <h3>2. What does CSS stand for?</h3>
+            <input type="radio" id="option_1" name="question_2" value="Creative Style Sheets">
+            <label for="question_1">Creative Style Sheets</label>
+            <br>
+            <input type="radio" id="option_2" name="question_2" value="Cascading Style Sheets">
+            <label for="question_1">Cascading Style Sheets</label>
+            <br>
+            <input type="radio" id="option_3" name="question_2" value="Computer Style Sheets">
+            <label for="question_1">Computer Style Sheets</label>
+            <br>
+            <input type="radio" id="option_4" name="question_2" value="Colorful Style Sheets">
+            <label for="question_1">Colorful Style Sheets</label>
+            <br>
+        </div>
+
+        <div class="quiz">
+            <h3>3. Which CSS property is used to change the text color of an element?</h3>
+            <input type="radio" id="option_1" name="question_3" value="font-color">
+            <label for="question_1">font-color</label>
+            <br>
+            <input type="radio" id="option_2" name="question_3" value="text-color">
+            <label for="question_1">text-color</label>
+            <br>
+            <input type="radio" id="option_3" name="question_3" value="color">
+            <label for="question_1">color</label>
+            <br>
+            <input type="radio" id="option_4" name="question_3" value="text-style">
+            <label for="question_1">text-style</label>
+            <br>
+        </div>
+
+        <div class="quiz">
+            <h3>4. Which option is used to create a hyperlink?</h3>
+            <input type="radio" id="option_1" name="question_4" value="link">
+            <label for="question_1">link</label>
+            <br><input type="radio" id="option_2" name="question_4" value="hyperlink">
+            <label for="question_1">hyperlink</label>
+            <br>
+            <input type="radio" id="option_3" name="question_4" value="a">
+            <label for="question_1">a</label>
+            <br>
+            <input type="radio" id="option_4" name="question_4" value="href">
+            <label for="question_1">href</label>
+            <br>
+        </div>
+        <div class="quiz">
+            <h3>5. What does the "float" property in CSS do?</h3>
+            <input type="radio" id="option_1" name="question_5" value="Makes elements float to the bottom of the page">
+            <label for="question_1">Makes elements float to the bottom of the page</label>
+            <br>
+            <input type="radio" id="option_2" name="question_5" value="Aligns text to the right of an element">
+            <label for="question_1">Aligns text to the right of an element</label>
+            <br>
+            <input type="radio" id="option_3" name="question_5" value="Positions an element to the left or right, allowing text to wrap around it">
+            <label for="question_1">Positions an element to the left or right, allowing text to wrap around it</label>
+            <br>
+            <input type="radio" id="option_4" name="question_5" value="Adds shadow effects to an element">
+            <label for="question_1">Adds shadow effects to an element</label>
+            <br>
+           
+        </div> 
+         <input type="submit" value="Submit"  id="submitButton" class="button" onclick="storeUserData(event)">
+            <br>
+        </form>
+
+        <div class="space">
+            <p></p>
+        </div>
+       
+    </div>
+    <script>
+   
+
+   function storeUserData(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the form element
+    const form = document.getElementById("quizForm");
+
+    // Initialize an empty string to store the query parameters
+    let queryParams = "";
+
+    // Loop through each input field in the form
+    for (let i = 0; i < form.elements.length; i++) {
+        const input = form.elements[i];
+
+        // Check if the input is a radio button and is checked
+        if (input.type === "radio" && input.checked) {
+            // Extract question number from input name
+            const questionNumber = input.name.split("_")[1];
+            // Append the selected value to the query parameters
+            queryParams += `&question_${questionNumber}=${input.value}`;
+        }
+    }
+
+    // Get the time taken from the global variable
+    const timeTaken = TIME_LIMIT - timeLeft;
+
+    // Append the time taken to the query parameters
+    queryParams += `&timeTaken=${timeTaken}`;
+
+    // Construct the results URL with the query parameters
+    const resultsUrl = `results.html?${queryParams}`;
+
+    // Redirect to the results page with the user data and time taken in the URL
+    window.location.href = resultsUrl;
+}
+
+    </script>
+</body>
+
+</html>

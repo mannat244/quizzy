@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/f093df13d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <style>
+        * {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            color: whitesmoke;
+            font-style: normal;
+        }
+
+
+        body {
+            background-color: rgb(18, 18, 18);
+        }
+
+        header .title {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .title h1 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: whitesmoke;
+        }
+
+        .main .timer {
+            background-color: rgb(26, 26, 26);
+            min-height: 20px;
+            max-width: 100%;
+            padding: auto;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            text-align: center;
+            border-radius: 12px 12px 12px 12px;
+            margin: auto;
+        }
+
+        .timer p {
+            padding-top: 1%;
+            padding-bottom: 1%;
+        }
+
+        .main .quiz {
+            background-color: rgb(26, 26, 26);
+            min-height: 80%;
+            max-width: 100%;
+            padding-left: 3%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            padding-right: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            text-align: left;
+            border-radius: 12px 12px 12px 12px;
+
+        }
+
+    .main h3 {
+            text-align: center;
+        }
+            
+        
+
+        .space {
+            height: 0.1vh;
+        }
+        
+
+        .main {
+            min-height: 70vh;
+            max-width: 90vw;
+            padding: auto;
+            margin-top: 3%;
+            text-align: center;
+            border-radius: 12px 12px 12px 12px;
+            margin: auto;
+        }
+
+        .start h2 {
+            padding-top: 3%;
+
+        }
+
+        .start p {
+            padding: 0 3%;
+        }
+
+        .icon_tray {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .button {
+                margin-top: 1%;
+                padding-bottom: 1%;
+                margin-bottom: 1%;
+                padding-left: 1%;
+                padding-right: 1%;
+                background-color: rgb(68, 68, 68);
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                will-change: transform;
+                padding-top: 1%;
+                min-height: 40px;
+                min-width: 80px;
+                box-sizing: border-box;
+                transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                outline: none;
+                appearance: none;
+                border-radius: 15px;
+                cursor: pointer;
+
+            }
+
+            .button:hover {
+                box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                transform: translateY(-2px);
+            }
+    </style>
+
+
+<header>
+    <div class="title">
+        <h1>Quizzy Results</h1>
+    </div>
+</header>
+
+<div class="main">
+    <div>
+        <h3>Congratulations! You have completed the contest!🎉🎉</h3>
+    </div>
+
+    
+    <div id="userResponses" class="quiz">
+        <p>You have marked the following responses:</p>
+    <!-- User responses will be displayed here -->
+</div>
+<div id="time-taken" class="quiz">
+    <!-- User responses will be displayed here -->
+</div>
+</div>
+
+
+<script>
+    // Function to extract parameters from the URL
+    function getUrlParams() {
+        const searchParams = new URLSearchParams(window.location.search);
+        return Object.fromEntries(searchParams.entries());
+    }
+
+    // Function to display user responses
+    function displayUserResponses() {
+        const userResponsesDiv = document.getElementById("userResponses");
+        const params = getUrlParams();
+
+        // Check if parameters exist
+        if (Object.keys(params).length === 0) {
+            userResponsesDiv.textContent = "No user responses found.";
+        } else {
+            // Loop through parameters and display responses
+            for (let i = 1; i <= 5; i++) {
+                const questionKey = `question_${i}`;
+                const response = params[questionKey];
+                if (response !== undefined) {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = `Question ${i}: ${response}`;
+                    userResponsesDiv.appendChild(paragraph);
+                }
+            }
+        }
+    }
+
+    // Call the function to display user responses when the page loads
+    displayUserResponses();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const timeTaken = urlParams.get('timeTaken');
+
+    // Display the timeTaken on the page
+    const timeTakenElement = document.getElementById('time-taken');
+    timeTakenElement.textContent = `Time taken: ${timeTaken} seconds`;
+</script>
+    
+</body>
+</html>
