@@ -108,31 +108,31 @@
     
     <div id="userResponses" class="quiz">
         <p>You have marked the following responses:</p>
-    <!-- User responses will be displayed here -->
+   
 </div>
 <div id="time-taken" class="quiz">
-    <!-- User responses will be displayed here -->
+  
 </div>
 </div>
 
 
 <script>
-    // Function to extract parameters from the URL
+
     function getUrlParams() {
         const searchParams = new URLSearchParams(window.location.search);
         return Object.fromEntries(searchParams.entries());
     }
 
-    // Function to display user responses
+  
     function displayUserResponses() {
         const userResponsesDiv = document.getElementById("userResponses");
         const params = getUrlParams();
 
-        // Check if parameters exist
+ 
         if (Object.keys(params).length === 0) {
             userResponsesDiv.textContent = "No user responses found.";
         } else {
-            // Loop through parameters and display responses
+           
             for (let i = 1; i <= 5; i++) {
                 const questionKey = `question_${i}`;
                 const response = params[questionKey];
@@ -145,14 +145,14 @@
         }
     }
 
-    // Call the function to display user responses when the page loads
+
     displayUserResponses();
 
     const urlParams = new URLSearchParams(window.location.search);
 
     const theme = urlParams.get('theme');
 
-// Apply theme based on the parameter
+
 if (theme === 'dark') {
     document.documentElement.classList.add('dark-theme');
 } else {
@@ -162,7 +162,7 @@ if (theme === 'dark') {
 
     const timeTaken = urlParams.get('timeTaken');
 
-    // Display the timeTaken on the page
+  
     const timeTakenElement = document.getElementById('time-taken');
     timeTakenElement.textContent = `Time taken: ${timeTaken} seconds`;
 </script>
