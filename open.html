@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="colors.css"/>
     <script src="https://kit.fontawesome.com/f093df13d4.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
@@ -39,7 +40,9 @@
         }
 
         // Start the timer when the page loads
-        window.onload = startTimer;
+       
+
+       
     </script>
 
 
@@ -51,31 +54,112 @@
         * {
             font-family: "Poppins", sans-serif;
             font-weight: 500;
-            color: whitesmoke;
+            color: var(--text_color);
             font-style: normal;
+        }
+
+       
+        ::-webkit-scrollbar {
+            width: auto;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg_scroll_color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            height: 20px;
+            border-radius: 15px;
+            background: var(--scroll_color);
+
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background:var(--scroll_hover_color);
         }
 
 
         body {
-            background-color: rgb(18, 18, 18);
+          
+            background-color: var(--background_color);
         }
+
+        @keyframes fade-in {
+
+0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+}
+
+100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+}
+
+
 
         header .title {
             height: 80px;
+            animation: fade-in 0.5s;
             display: flex;
             justify-content: center;
+        }
+
+        .dark_toggle {
+            align-self: center;
+            margin-top: 17px;
+            animation: fade-in 0.5s;
+            position: absolute;
+            right: 10vw;
+        }
+
+        header .title .dark_toggle label {
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color:var(--toggle_bg);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            margin-left: 32px;
+        }
+
+        header .title .dark_toggle label::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        #toggle:checked+label::before {
+            transform: translateX(20px);
+        }
+
+        #toggle {
+            display: none;
+        }
+
+        #toggle:checked+label {
+            background-color:var(--toggle_btn);
         }
 
         .title h1 {
             font-family: "Poppins", sans-serif;
             font-weight: 600;
             font-style: normal;
-            color: whitesmoke;
+            color: var(--text_color);
         }
 
         .main .timer {
-            background-color: rgb(26, 26, 26);
+            background-color:var(--cards_bg);
             min-height: 20px;
+            animation: fade-in 0.5s;
             max-width: 100%;
             padding: auto;
             margin-top: 3%;
@@ -91,24 +175,26 @@
         }
 
         .main .quiz {
-            background-color: rgb(26, 26, 26);
+            background-color:var(--cards_bg);
             min-height: 80%;
             max-width: 100%;
             padding-left: 3%;
+            animation: fade-in 0.5s;
             padding-top: 1%;
             padding-bottom: 1%;
             padding-right: 3%;
             margin-top: 3%;
             margin-bottom: 3%;
             text-align: left;
-            border-radius: 12px 12px 12px 12px;
+            border-radius: 12px;
+            border: solid 0px var(--border_color);
 
         }
 
         .space {
             height: 0.1vh;
         }
-        
+
 
         .main {
             min-height: 70vh;
@@ -136,38 +222,52 @@
         }
 
         .button {
-                margin-top: 1%;
-                padding-bottom: 1%;
-                margin-bottom: 1%;
-                padding-left: 1%;
-                padding-right: 1%;
-                background-color: rgb(68, 68, 68);
-                text-align: center;
-                text-decoration: none;
-                border: none;
-                will-change: transform;
-                padding-top: 1%;
-                min-height: 40px;
-                min-width: 80px;
-                box-sizing: border-box;
-                transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-                outline: none;
-                appearance: none;
-                border-radius: 15px;
-                cursor: pointer;
+            margin-top: 1%;
+            padding-bottom: 1%;
+            position: relative;
+            margin-bottom: 1%;
+            padding-left: 1%;
+            padding-right: 1%;
+            color: var(--submit_text);
+            background-color: var(--submit_button);
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            will-change: transform;
+            padding-top: 1%;
+            min-height: 40px;
+            min-width: 80px;
+            animation: fade-in 0.5s;
+            box-sizing: border-box;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            outline: none;
+            appearance: none;
+            border-radius: 10px;
+            cursor: pointer;
 
-            }
+        }
 
-            .button:hover {
-                box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-                transform: translateY(-2px);
-            }
+
+        .button:hover {
+
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+       
     </style>
 
     <header>
         <div class="title">
             <h1>Quizzy</h1>
+
+            <span class="dark_toggle">
+                <input type="checkbox" id="toggle" onclick="toggle()" />
+                <label for="toggle"></label>
+            </span>
         </div>
+
+
     </header>
 
 
@@ -178,7 +278,7 @@
         <div class="timer">
 
             <p><i class="fa-solid fa-hourglass-half"></i> Time Left:
-                <span id="timer">${formatTimeLeft(timeLeft)}</span>
+                <span id="timer">00:00</span>
             </p>
         </div>
 
@@ -187,128 +287,160 @@
             <form id="quizForm" action="results.html" method="GET">
                 <h3>1. Which option is used to define an image in HTML?</h3>
                 <input type="radio" id="option_1" name="question_1" value="img">
-                <label for="question_1">img</label>
+                <label for="option_1">img</label>
                 <br>
                 <input type="radio" id="option_2" name="question_1" value="image">
-                <label for="question_1">image</label>
+                <label for="option_2">image</label>
                 <br>
                 <input type="radio" id="option_3" name="question_1" value="picture">
-                <label for="question_1">picture</label>
+                <label for="option_3">picture</label>
                 <br>
                 <input type="radio" id="option_4" name="question_1" value="imgsrc">
-                <label for="question_1">imgsrc</label>
+                <label for="option_4">imgsrc</label>
                 <br>
 
         </div>
 
         <div class="quiz">
             <h3>2. What does CSS stand for?</h3>
-            <input type="radio" id="option_1" name="question_2" value="Creative Style Sheets">
-            <label for="question_1">Creative Style Sheets</label>
+            <input type="radio" id="option_11" name="question_2" value="Creative Style Sheets">
+            <label for="option_11">Creative Style Sheets</label>
             <br>
-            <input type="radio" id="option_2" name="question_2" value="Cascading Style Sheets">
-            <label for="question_1">Cascading Style Sheets</label>
+            <input type="radio" id="option_12" name="question_2" value="Cascading Style Sheets">
+            <label for="option_12">Cascading Style Sheets</label>
             <br>
-            <input type="radio" id="option_3" name="question_2" value="Computer Style Sheets">
-            <label for="question_1">Computer Style Sheets</label>
+            <input type="radio" id="option_13" name="question_2" value="Computer Style Sheets">
+            <label for="option_13">Computer Style Sheets</label>
             <br>
-            <input type="radio" id="option_4" name="question_2" value="Colorful Style Sheets">
-            <label for="question_1">Colorful Style Sheets</label>
+            <input type="radio" id="option_14" name="question_2" value="Colorful Style Sheets">
+            <label for="option_14">Colorful Style Sheets</label>
             <br>
         </div>
 
         <div class="quiz">
             <h3>3. Which CSS property is used to change the text color of an element?</h3>
-            <input type="radio" id="option_1" name="question_3" value="font-color">
-            <label for="question_1">font-color</label>
+            <input type="radio" id="option_11" name="question_3" value="font-color">
+            <label for="option_11">font-color</label>
             <br>
-            <input type="radio" id="option_2" name="question_3" value="text-color">
-            <label for="question_1">text-color</label>
+            <input type="radio" id="option_21" name="question_3" value="text-color">7
+            <label for="option_21">text-color</label>
             <br>
-            <input type="radio" id="option_3" name="question_3" value="color">
-            <label for="question_1">color</label>
+            <input type="radio" id="option_31" name="question_3" value="color">
+            <label for="option_31">color</label>
             <br>
-            <input type="radio" id="option_4" name="question_3" value="text-style">
-            <label for="question_1">text-style</label>
+            <input type="radio" id="option_41" name="question_3" value="text-style">
+            <label for="option_41">text-style</label>
             <br>
         </div>
 
         <div class="quiz">
             <h3>4. Which option is used to create a hyperlink?</h3>
-            <input type="radio" id="option_1" name="question_4" value="link">
-            <label for="question_1">link</label>
-            <br><input type="radio" id="option_2" name="question_4" value="hyperlink">
-            <label for="question_1">hyperlink</label>
+            <input type="radio" id="option_17" name="question_4" value="link">
+            <label for="option_1">link</label>
+            <br><input type="radio" id="option_27" name="question_4" value="hyperlink">
+            <label for="option_27">hyperlink</label>
             <br>
-            <input type="radio" id="option_3" name="question_4" value="a">
-            <label for="question_1">a</label>
+            <input type="radio" id="option_37" name="question_4" value="a">
+            <label for="option_37">a</label>
             <br>
-            <input type="radio" id="option_4" name="question_4" value="href">
-            <label for="question_1">href</label>
+            <input type="radio" id="option_47" name="question_4" value="href">
+            <label for="option_47">href</label>
             <br>
         </div>
         <div class="quiz">
             <h3>5. What does the "float" property in CSS do?</h3>
-            <input type="radio" id="option_1" name="question_5" value="Makes elements float to the bottom of the page">
-            <label for="question_1">Makes elements float to the bottom of the page</label>
+            <input type="radio" id="option_71" name="question_5" value="Makes elements float to the bottom of the page">
+            <label for="option_71">Makes elements float to the bottom of the page</label>
             <br>
-            <input type="radio" id="option_2" name="question_5" value="Aligns text to the right of an element">
-            <label for="question_1">Aligns text to the right of an element</label>
+            <input type="radio" id="option_72" name="question_5" value="Aligns text to the right of an element">
+            <label for="option_72">Aligns text to the right of an element</label>
             <br>
-            <input type="radio" id="option_3" name="question_5" value="Positions an element to the left or right, allowing text to wrap around it">
-            <label for="question_1">Positions an element to the left or right, allowing text to wrap around it</label>
+            <input type="radio" id="option_73" name="question_5"
+                value="Positions an element to the left or right, allowing text to wrap around it">
+            <label for="option_73">Positions an element to the left or right, allowing text to wrap around it</label>
             <br>
-            <input type="radio" id="option_4" name="question_5" value="Adds shadow effects to an element">
-            <label for="question_1">Adds shadow effects to an element</label>
+            <input type="radio" id="option_74" name="question_5" value="Adds shadow effects to an element">
+            <label for="option_74">Adds shadow effects to an element</label>
             <br>
-           
-        </div> 
-         <input type="submit" value="Submit"  id="submitButton" class="button" onclick="storeUserData(event)">
-            <br>
+
+        </div>
+        <input type="submit" value="Submit" id="submitButton" class="button" onclick="storeUserData(event)">
+        <br>
         </form>
 
         <div class="space">
             <p></p>
         </div>
-       
+
     </div>
     <script>
-   
 
-   function storeUserData(event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
 
-    // Get the form element
-    const form = document.getElementById("quizForm");
+        function storeUserData(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
 
-    // Initialize an empty string to store the query parameters
-    let queryParams = "";
+            // Get the form element
+            const form = document.getElementById("quizForm");
 
-    // Loop through each input field in the form
-    for (let i = 0; i < form.elements.length; i++) {
-        const input = form.elements[i];
+            // Initialize an empty string to store the query parameters
+            let queryParams = "";
 
-        // Check if the input is a radio button and is checked
-        if (input.type === "radio" && input.checked) {
-            // Extract question number from input name
-            const questionNumber = input.name.split("_")[1];
-            // Append the selected value to the query parameters
-            queryParams += `&question_${questionNumber}=${input.value}`;
+            // Loop through each input field in the form
+            for (let i = 0; i < form.elements.length; i++) {
+                const input = form.elements[i];
+
+                // Check if the input is a radio button and is checked
+                if (input.type === "radio" && input.checked) {
+                    // Extract question number from input name
+                    const questionNumber = input.name.split("_")[1];
+                    // Append the selected value to the query parameters
+                    queryParams += `&question_${questionNumber}=${input.value}`;
+                }
+            }
+
+            // Get the time taken from the global variable
+            const timeTaken = TIME_LIMIT - timeLeft;
+
+            // Append the time taken to the query parameters
+            queryParams += `&timeTaken=${timeTaken}`;
+
+            const isDarkMode = document.getElementById("toggle").checked;
+    // Append the theme to the query parameters
+    queryParams += `&theme=${isDarkMode ? 'dark' : 'light'}`;
+
+            // Construct the results URL with the query parameters
+            const resultsUrl = `results.html?${queryParams}`;
+
+            // Redirect to the results page with the user data and time taken in the URL
+            window.location.href = resultsUrl;
+        }
+
+
+           // Function to set the theme based on the mode
+    function setTheme(isDarkMode) {
+        if (isDarkMode) {
+            document.documentElement.classList.remove("light-theme");
+            document.documentElement.classList.add("dark-theme");
+        } else {
+            document.documentElement.classList.remove("dark-theme");
+            document.documentElement.classList.add("light-theme");
         }
     }
 
-    // Get the time taken from the global variable
-    const timeTaken = TIME_LIMIT - timeLeft;
+    // Function to toggle the theme
+    function toggle() {
+        const isDarkMode = document.getElementById("toggle").checked;
+        setTheme(isDarkMode);
+    }
 
-    // Append the time taken to the query parameters
-    queryParams += `&timeTaken=${timeTaken}`;
+    // Call toggle function on page load
+    window.onload = toggle;
 
-    // Construct the results URL with the query parameters
-    const resultsUrl = `results.html?${queryParams}`;
-
-    // Redirect to the results page with the user data and time taken in the URL
-    window.location.href = resultsUrl;
+    window.onload=function(){
+        document.getElementById("toggle").checked = true;
+toggle();
+startTimer();
 }
 
     </script>

@@ -1,116 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="colors.css" />
     <script src="https://kit.fontawesome.com/f093df13d4.js" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<body class="dark-theme">
     <style>
-        *{
+        * {
             font-family: "Poppins", sans-serif;
             font-weight: 500;
-            color: whitesmoke;
+            color: var(--text_color);
             font-style: normal;
         }
 
 
-        body {
-            background-color: rgb(18, 18, 18);
+        @keyframes fade-in {
+
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0px) scale(1);
+            }
         }
 
-           header .title {
-                height: 80px;
-                display: flex;
-                justify-content:  center;
-            }
-            
-            .title h1{
-                font-family: "Poppins", sans-serif;
-                font-weight: 600;
-                font-style: normal;
-                color: whitesmoke;
-            }
+        body {
+            background-color: var(--background_color)
+        }
 
-            .start {
-                background-color: rgb(26, 26, 26);
-                min-height: 20vw;
-                max-width: 40vw;
-                padding: auto;
-                text-align: center;
-                border-radius: 12px 12px 12px 12px;
-                margin: auto;
-            }
+        header .title {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+        }
 
-            .start h2 {
-               padding-top: 3%;
+        .title h1 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            animation: fade-in 0.5s;
+            font-style: normal;
+            color: var(--text_color)
+        }
 
-            }
+        .start {
+            background-color: var(--cards_bg);
+            min-height: 20vw;
+            animation: fade-in 0.5s;
+            max-width: 40vw;
+            padding: auto;
+            text-align: center;
+            border-radius: 12px 12px 12px 12px;
+            margin: auto;
+        }
 
-            .start p {
-                padding: 0 3%;
-            }
+        .start h2 {
+            padding-top: 3%;
 
-            .icon_tray{
-                display: flex;
-                justify-content: space-around;
+        }
 
-            }
+        .start p {
+            padding: 0 3%;
+        }
 
-            .button {
-                margin-top: 1%;
-                padding-bottom: 2%;
-                margin-bottom: 3%;
-                background-color: rgb(68, 68, 68);
-                text-align: center;
-                text-decoration: none;
-                border: none;
-                will-change: transform;
-                padding: 2%;
-                min-height: 40px;
-                box-sizing: border-box;
-                transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-                outline: none;
-                appearance: none;
-                border-radius: 15px;
-                cursor: pointer;
+        .icon_tray {
+            display: flex;
+            justify-content: space-around;
 
-            }
+        }
 
-            .button:hover {
-                box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-                transform: translateY(-2px);
-            }
+        .button {
+            margin-top: 1%;
+            padding-bottom: 2%;
+            margin-bottom: 3%;
+            background-color: var(--submit_button);
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            will-change: transform;
+            padding: 2%;
+            min-height: 40px;
+            color: var(--submit_text);
+            box-sizing: border-box;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            outline: none;
+            appearance: none;
+            border-radius: 15px;
+            cursor: pointer;
+
+        }
+
+        .button:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
 
     </style>
 
+
+    <!-- content here -->
+ 
     <header>
         <div class="title">
             <h1>Quizzy</h1>
         </div>
-</header>
-        <div class="start">
-            <h2>Frontend Web Development Contest</h2>
-            <p>Test your skills and knowledge in user interface design and coding. Good luck!</p>
-            <div class="icon_tray">
-               <p><i class="fa-solid fa-question"></i> : 5Qs</p>
-                <p><i class="fa-solid fa-clock"></i> : 5 Min</p>
-                <p><i class="fa-solid fa-circle-check"></i> : MCQs</p>
-            </div>
-            
-            <button class="button" role="button" onclick="startQuiz()">Begin Quiz</button>
+    </header>
+    <div class="start">
+        <h2>Frontend Web Development Contest</h2>
+        <p>Test your skills and knowledge in user interface design and coding. Good luck!</p>
+        <div class="icon_tray">
+            <p><i class="fa-solid fa-question"></i> : 5Qs</p>
+            <p><i class="fa-solid fa-clock"></i> : 5 Min</p>
+            <p><i class="fa-solid fa-circle-check"></i> : MCQs</p>
         </div>
 
-       
-        <script>
-            function startQuiz() {
-                window.location.href = "open.html";
-            }
-        </script>
-    
+        <button class="button" role="button" onclick="startQuiz()">Begin Quiz</button>
+    </div> 
+
+    <script>
+        function startQuiz() {
+            window.location.href = "open.html";
+        }
+    </script>
+
 </body>
+
 </html>

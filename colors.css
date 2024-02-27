@@ -1,0 +1,43 @@
+/* Dark Theme */
+.dark-theme {
+    --text_color: #f5f5f5;
+    --bg_scroll_color: #1a1a1a;
+    --scroll_color: #222222;
+    --scroll_hover_color: #0a0a0a;
+    --background_color: #121212;
+    --toggle_btn: #3a3a3a;
+    --toggle_bg: #3a3a3a;
+    --border_color: #1a1a1a;
+    --cards_bg: #1a1a1a;
+    --submit_button: #444444;
+    --submit_text: #f5f5f5;
+}
+
+/* Light Theme */
+.light-theme {
+    --text_color: #000000;
+    --bg_scroll_color: #eeeded;
+    --scroll_color: #1D24CA;
+    --scroll_hover_color: #181daa;
+    --background_color: #f7f7f7;
+    --toggle_btn: #1D24CA;
+    --border_color: #979797;
+    --toggle_bg: #1D24CA;
+    --cards_bg: #ffffff;
+    --submit_button: #1D24CA;
+    --submit_text: #ffffff;
+}
+
+/* Light Theme 
+.light-theme {
+    --text_color: #000000;
+    --bg_scroll_color: #f5f5f5;
+    --scroll_color: #00A9FF;
+    --scroll_hover_color: #14b0fe;
+    --background_color: #f5f5f5;
+    --toggle_btn: #00A9FF;
+    --cards_bg: #ffffff;
+    --submit_button: #00A9FF;
+    --submit_text: #fff;
+}
+*/
