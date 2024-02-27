@@ -33,13 +33,13 @@
                 document.getElementById("timer").textContent = formatTimeLeft(timeLeft);
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    // Additional actions to be performed when the timer reaches zero can be added here
+                  
                     document.getElementById("submitButton").click();
                 }
             }, 1000);
         }
 
-        // Start the timer when the page loads
+
        
 
        
@@ -377,47 +377,46 @@
 
 
         function storeUserData(event) {
-            // Prevent the default form submission behavior
+    
             event.preventDefault();
 
-            // Get the form element
+
             const form = document.getElementById("quizForm");
 
-            // Initialize an empty string to store the query parameters
+       
             let queryParams = "";
 
-            // Loop through each input field in the form
+       
             for (let i = 0; i < form.elements.length; i++) {
                 const input = form.elements[i];
 
-                // Check if the input is a radio button and is checked
+    
                 if (input.type === "radio" && input.checked) {
-                    // Extract question number from input name
+       
                     const questionNumber = input.name.split("_")[1];
-                    // Append the selected value to the query parameters
+    
                     queryParams += `&question_${questionNumber}=${input.value}`;
                 }
             }
 
-            // Get the time taken from the global variable
+
             const timeTaken = TIME_LIMIT - timeLeft;
 
-            // Append the time taken to the query parameters
+  
             queryParams += `&timeTaken=${timeTaken}`;
 
             const isDarkMode = document.getElementById("toggle").checked;
-    // Append the theme to the query parameters
+
     queryParams += `&theme=${isDarkMode ? 'dark' : 'light'}`;
 
-            // Construct the results URL with the query parameters
+      
             const resultsUrl = `results.html?${queryParams}`;
 
-            // Redirect to the results page with the user data and time taken in the URL
             window.location.href = resultsUrl;
         }
 
 
-           // Function to set the theme based on the mode
+ 
     function setTheme(isDarkMode) {
         if (isDarkMode) {
             document.documentElement.classList.remove("light-theme");
@@ -428,13 +427,13 @@
         }
     }
 
-    // Function to toggle the theme
+    
     function toggle() {
         const isDarkMode = document.getElementById("toggle").checked;
         setTheme(isDarkMode);
     }
 
-    // Call toggle function on page load
+
     window.onload = toggle;
 
     window.onload=function(){
